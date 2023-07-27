@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <style>
+    .crossed-out {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <input type="text" id="newTodo" placeholder="Enter a new to-do">
+  <button onclick="addTodo()">Add To-Do</button>
+  <ul id="todoList">
+    <!-- To-do items will be added here -->
+  </ul>
+
+  <script>
+    function addTodo() {
+      const input = document.getElementById('newTodo');
+      const text = input.value.trim();
+      if (text === '') return;
+
+      const list = document.getElementById('todoList');
+      const listItem = document.createElement('li');
+      listItem.innerText = text;
+      listItem.onclick = function () {
+        this.classList.add('crossed-out');
+        setTimeout(() => this.remove(), 1000);
+      };
+
+      list.appendChild(listItem);
+      input.value = '';
+    }
+  </script>
+</body>
+</html>
